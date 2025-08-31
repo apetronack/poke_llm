@@ -264,6 +264,37 @@ class Pokemon:
             'speed': self.calculate_stat(self.stats.speed)
         }
     
+    # Individual stat properties for damage calculator
+    @property
+    def attack(self) -> int:
+        """Get actual attack stat"""
+        return self.calculate_stat(self.stats.attack)
+    
+    @property
+    def defense(self) -> int:
+        """Get actual defense stat"""
+        return self.calculate_stat(self.stats.defense)
+    
+    @property
+    def special_attack(self) -> int:
+        """Get actual special attack stat"""
+        return self.calculate_stat(self.stats.special_attack)
+    
+    @property
+    def special_defense(self) -> int:
+        """Get actual special defense stat"""
+        return self.calculate_stat(self.stats.special_defense)
+    
+    @property
+    def speed(self) -> int:
+        """Get actual speed stat"""
+        return self.calculate_stat(self.stats.speed)
+    
+    @property
+    def ability_names(self) -> List[str]:
+        """Get list of ability names for damage calculator compatibility"""
+        return [ability.name.lower() for ability in self.abilities]
+    
     def is_fainted(self) -> bool:
         """Check if the Pokemon has fainted"""
         return self.current_hp <= 0
