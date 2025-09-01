@@ -72,10 +72,7 @@ def test_manual_pokemon():
     healing_done = blaziken.heal(20)
     print(f"Healing done: {healing_done}, Current HP: {blaziken.current_hp}")
     
-    # Test conversion to dict
-    print(f"\n=== Conversion to Dictionary ===")
-    pokemon_dict = blaziken.to_dict()
-    print(f"As dictionary: {pokemon_dict['name']} - {pokemon_dict['types']}")
+    # No dictionary conversion needed anymore
     
     return blaziken
 

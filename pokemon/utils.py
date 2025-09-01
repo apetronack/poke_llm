@@ -5,44 +5,6 @@ from typing import Dict, List
 from pokemon import Pokemon, Move
 
 
-def pokemon_to_battle_format(pokemon: Pokemon) -> Dict:
-    """
-    Convert a Pokemon object to the format expected by the battle system
-    """
-    return {
-        "name": pokemon.name,
-        "types": pokemon.types
-    }
-
-
-def moves_to_battle_format(pokemon: Pokemon) -> List[Dict]:
-    """
-    Convert Pokemon moves to the format expected by the battle system
-    """
-    return [
-        {
-            "name": move.name,
-            "type": move.type,
-            "power": move.power or 0,  # Handle None values for status moves
-            "accuracy": move.accuracy or 100  # Default accuracy if None
-        }
-        for move in pokemon.moves
-    ]
-
-
-def create_battle_ready_pokemon(pokemon_name: str, level: int = 50, 
-                               move_names: List[str] = None) -> tuple:
-    """
-    Create a Pokemon and return it in battle-ready format
-    
-    Returns:
-        tuple: (pokemon_dict, moves_list) ready for BattleState
-    """
-    pokemon = Pokemon.from_api(pokemon_name, level, move_names)
-    pokemon_dict = pokemon_to_battle_format(pokemon)
-    moves_list = moves_to_battle_format(pokemon)
-    
-    return pokemon_dict, moves_list
 
 
 def display_pokemon_summary(pokemon: Pokemon) -> None:

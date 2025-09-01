@@ -199,48 +199,6 @@ class Pokemon:
                 level=level
             )
     
-    @classmethod
-    def from_dict(cls, pokemon_dict: Dict) -> 'Pokemon':
-        """Create a Pokemon from a dictionary (for compatibility with existing code)"""
-        name = pokemon_dict.get('name', 'Unknown')
-        types = pokemon_dict.get('types', ['Normal'])
-        
-        # Try to fetch full data if we only have basic info
-        if len(pokemon_dict) <= 3:  # Only basic info provided
-            return cls.from_api(name)
-        
-        # Build from provided data
-        stats_data = pokemon_dict.get('stats', {})
-        stats = PokemonStats(
-            hp=stats_data.get('hp', 50),
-            attack=stats_data.get('attack', 50),
-            defense=stats_data.get('defense', 50),
-            special_attack=stats_data.get('special_attack', 50),
-            special_defense=stats_data.get('special_defense', 50),
-            speed=stats_data.get('speed', 50)
-        )
-        
-        # Handle moves
-        moves = []
-        for move_data in pokemon_dict.get('moves', []):
-            if isinstance(move_data, dict):
-                move = Move(
-                    name=move_data.get('name', 'Tackle'),
-                    type=move_data.get('type', 'Normal'),
-                    power=move_data.get('power'),
-                    accuracy=move_data.get('accuracy'),
-                    pp=move_data.get('pp', 1),
-                    damage_class=move_data.get('damage_class', 'physical')
-                )
-                moves.append(move)
-        
-        return cls(
-            name=name,
-            types=types,
-            stats=stats,
-            moves=moves,
-            level=pokemon_dict.get('level', 50)
-        )
     
     def calculate_hp(self) -> int:
         """Calculate actual HP based on base stat and level"""
@@ -326,36 +284,6 @@ class Pokemon:
                 return move
         return None
     
-    def to_dict(self) -> Dict:
-        """Convert Pokemon to dictionary format (for compatibility)"""
-        return {
-            'name': self.name,
-            'types': self.types,
-            'level': self.level,
-            'stats': {
-                'hp': self.stats.hp,
-                'attack': self.stats.attack,
-                'defense': self.stats.defense,
-                'special_attack': self.stats.special_attack,
-                'special_defense': self.stats.special_defense,
-                'speed': self.stats.speed
-            },
-            'moves': [
-                {
-                    'name': move.name,
-                    'type': move.type,
-                    'power': move.power,
-                    'accuracy': move.accuracy,
-                    'pp': move.pp,
-                    'damage_class': move.damage_class
-                }
-                for move in self.moves
-            ],
-            'abilities': [ability.name for ability in self.abilities],
-            'current_hp': self.current_hp,
-            'height': self.height,
-            'weight': self.weight
-        }
     
     def __str__(self) -> str:
         """String representation of the Pokemon"""

@@ -49,33 +49,8 @@ def test_pokemon_battle_state():
     best_move = recommend_move(state)
     print(f"Recommended move: {best_move}")
     
-    print("\n3. Testing backward compatibility with dictionaries:")
-    
-    # Test with dictionary format
-    my_pokemon_dict = {"name": "Blaziken", "types": ["Fire", "Fighting"]}
-    opponent_pokemon_dict = {"name": "Sceptile", "types": ["Grass"]}
-    my_moves_dict = [
-        {"name": "Flamethrower", "type": "Fire", "power": 90, "accuracy": 100},
-        {"name": "Sky Uppercut", "type": "Fighting", "power": 85, "accuracy": 90},
-        {"name": "Earthquake", "type": "Ground", "power": 100, "accuracy": 100},
-        {"name": "Thunder Punch", "type": "Electric", "power": 75, "accuracy": 100}
-    ]
-    
-    state_dict = BattleState(my_pokemon_dict, opponent_pokemon_dict, my_moves_dict, [])
-    best_move_dict = recommend_move(state_dict)
-    print(f"Recommended move (dict format): {best_move_dict}")
-    
-    print("\n4. Testing mixed format:")
-    
-    # Test mixed format (Pokemon object vs dictionary)
-    state_mixed = BattleState(blaziken, opponent_pokemon_dict)
-    best_move_mixed = recommend_move(state_mixed)
-    print(f"Recommended move (mixed format): {best_move_mixed}")
-    
     print("\n=== Test Results ===")
     print("✅ Pokemon objects work directly with BattleState")
-    print("✅ Backward compatibility maintained for dictionaries")
-    print("✅ Mixed format support works")
     print("✅ Move recommendation system updated")
     print("✅ No more manual formatting required!")
     

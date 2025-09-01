@@ -91,17 +91,7 @@ def api_pokemon_demo():
 
 def battle_integration_demo(pokemon1, pokemon2=None):
     """Show how Pokemon integrates with the battle system"""
-    from pokemon import pokemon_to_battle_format, moves_to_battle_format
-    
     print("\n3. Battle System Integration:")
-    
-    # Convert to battle format
-    battle_pokemon = pokemon_to_battle_format(pokemon1)
-    battle_moves = moves_to_battle_format(pokemon1)
-    
-    print(f"Battle format - Pokemon: {battle_pokemon}")
-    print(f"Battle format - Moves: {battle_moves[:2]}...")  # Show first 2 moves
-    
     # Create a simple opponent if not provided
     if pokemon2 is None:
         from pokemon import Pokemon, PokemonStats
@@ -112,7 +102,6 @@ def battle_integration_demo(pokemon1, pokemon2=None):
             stats=opponent_stats, 
             level=50
         )
-    
     print(f"\nSimulating battle scenario:")
     print(f"  {pokemon1.name} vs {pokemon2.name}")
     print(f"  {pokemon1.name} types: {pokemon1.types}")

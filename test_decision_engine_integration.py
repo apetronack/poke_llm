@@ -81,39 +81,10 @@ def test_damage_calculator_integration():
     for move_data in analysis[:2]:  # Show top 2 moves
         print(f"  {move_data['name']}: {move_data['expected_damage']:.1f} expected damage")
 
-def test_legacy_compatibility():
-    """Test that the system still works with dictionary format"""
-    print("\n=== Testing Legacy Dictionary Compatibility ===")
-    
-    # Create Pokemon using dictionary format (legacy)
-    my_pokemon_dict = {
-        'name': 'Pikachu',
-        'types': ['Electric'],
-        'level': 50
-    }
-    
-    opponent_pokemon_dict = {
-        'name': 'Gyarados', 
-        'types': ['Water', 'Flying'],
-        'level': 50
-    }
-    
-    moves_dict = [
-        {'name': 'Thunderbolt', 'type': 'Electric', 'power': 90, 'accuracy': 100},
-        {'name': 'Quick Attack', 'type': 'Normal', 'power': 40, 'accuracy': 100},
-        {'name': 'Iron Tail', 'type': 'Steel', 'power': 100, 'accuracy': 75},
-        {'name': 'Thunder Wave', 'type': 'Electric', 'power': 0, 'accuracy': 90}
-    ]
-    
-    state_legacy = BattleState(my_pokemon_dict, opponent_pokemon_dict, moves_dict)
-    
-    best_move_legacy = recommend_move(state_legacy)
-    print(f"Legacy format - Best move: {best_move_legacy}")
 
 if __name__ == "__main__":
     try:
         test_damage_calculator_integration()
-        test_legacy_compatibility()
         print("\n✅ All tests completed successfully!")
         
     except Exception as e:

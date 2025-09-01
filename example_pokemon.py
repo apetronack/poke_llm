@@ -24,15 +24,7 @@ def main():
     print(f"Custom moves: {[move.name for move in sceptile.moves]}")
     print()
     
-    # Method 3: Create from dictionary (backward compatibility)
-    print("3. Creating Pokemon from dictionary (old format compatibility):")
-    pokemon_dict = {
-        "name": "Charizard",
-        "types": ["Fire", "Flying"]
-    }
-    charizard = Pokemon.from_dict(pokemon_dict)
-    print(charizard)
-    print()
+    # Method 3 removed: Dictionary compatibility is no longer supported
     
     # Demonstrate battle mechanics
     print("4. Battle mechanics demo:")
@@ -57,10 +49,7 @@ def main():
         print(f"Damage Class: {move.damage_class}")
     print()
     
-    # Convert to dictionary for compatibility with existing battle system
-    print("6. Converting to dictionary for battle system compatibility:")
-    blaziken_dict = blaziken.to_dict()
-    print(f"Pokemon as dict: {blaziken_dict['name']} - Types: {blaziken_dict['types']}")
+    # No dictionary conversion needed anymore
     
     # Show actual stats at current level
     print("7. Actual stats at current level:")
